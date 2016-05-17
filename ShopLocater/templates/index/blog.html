@@ -1,0 +1,98 @@
+<html>
+<head>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script>
+function initMap()
+{
+    var points = new Array();
+    var index = 0;
+	var latlng = new google.maps.LatLng(47.3709397, 8.5274632);
+    var map = new google.maps.Map(document.getElementById('googleMap'), {
+    center: latlng,
+    zoom: 15
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    
+   {% for field in shops %}
+           var image = {
+            url: '../media/{{ field.pictures }}',
+            size: new google.maps.Size(50, 50),
+            scaledSize: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 32)
+          };
+
+            var marker = new google.maps.Marker(
+			{
+				position: new google.maps.LatLng({{ field.coordinatesx }}, {{ field.coordinatesy }}),
+				map: map,
+				draggable: false,
+				animation: google.maps.Animation.DROP,
+				title: '{{ field.name }}',		
+              icon: image
+			});            
+            points[index] = marker;            
+            index++;
+    {% endfor %} 
+    
+    if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('You are here.<br> ~' + position.coords.accuracy + 'meter');
+              map.setCenter(pos);
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
+}
+
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}
+</script>
+
+<style type="text/css">
+#googleMap
+{
+	width: 700px;
+	height: 500px;
+}
+
+</style>
+
+</head>
+<body onload="initMap();">
+<h1>Blog</h1>
+
+{% if user.is_authenticated %}
+<table>
+        {% for field in shops %}
+            <tr>
+                <td><a href="../{{ field.id}}">{{ field.name }}</a></td>
+                <td>{{ field.description }}</td>
+                <td><img src="../media/{{ field.pictures }}" style="width: 100px; height:100px;"></td>
+                <td>{{ field.coordinatesx }}</td>
+                <td>{{ field.coordinatesy }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div id="googleMap"></div>
+    <a href="/logout/">Logout</a>
+{% else %}
+    <a href="/login/?next={{ request.path }}">Login</a>
+{% endif %}
+<a href="/home/">Home</a>
+</body>
+</html>
