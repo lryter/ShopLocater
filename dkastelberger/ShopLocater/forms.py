@@ -5,5 +5,5 @@ from .models import Task
 class ShopForm(ModelForm):
     class Meta:
         model = Task
-        fields = ('name', 'description', 'category',  'coordinatesx', 'coordinatesy',  'pictures' )
+        fields = ('name', 'description', 'category',  'coordinatesx', 'coordinatesy', 'rating',  'pictures' )
     
