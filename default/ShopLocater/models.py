@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator,  MinValueValidator
 
 CATEGORY_CHOICES = ((1,  'Imbiss & Restaurant'), 
                                         (2,  'Lebensmittel'), 
@@ -16,8 +17,10 @@ class Task(models.Model):
     pictures = models.ImageField(upload_to='uploads/',  default='uploads/fail.jpg')
     coordinatesx = models.FloatField( default = 0)
     coordinatesy = models.FloatField( default = 0)
+    rating = models.IntegerField(default=1,  validators=[MaxValueValidator(5),  MinValueValidator(1)])
     date_created =models.DateTimeField(auto_now=True)
     
     def ___str__(self):
         return "%s" % self.name
         
+#git diff --name-only --diff-filter=U | xargs git rm
