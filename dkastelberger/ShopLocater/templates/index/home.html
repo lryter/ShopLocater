@@ -6,11 +6,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Locater</title>
+	<!-- Get staticfiles -->
+	{% load staticfiles %}
     <!-- Path to Framework7 Library CSS-->
-    <link rel="stylesheet" href="/static/css/framework7.ios.min.css">
-    <link rel="stylesheet" href="/static/css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href={% static "css/framework7.ios.min.css" %}>
+    <link rel="stylesheet" href={% static "css/framework7.ios.colors.min.css" %}>
     <!-- Path to map style-->
-    <link rel="stylesheet" href="/static/css/map.css">
+    <link rel="stylesheet" href={% static "css/map.css" %}>
   </head>
   <body onload="initMap();">
     <!-- Status bar overlay for fullscreen mode-->
@@ -39,7 +41,8 @@
             <!-- We have home navbar without left link-->
             <div class="center sliding">Locater</div>
             <div class="right">
-              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+              <!-- Right link contains only icon - additional "icon-only" class-->
+			  <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
             </div>
           </div>
         </div>
@@ -63,7 +66,7 @@
               <div class="content-block-title">Links</div>
               <div class="list-block">
                 <ul>
-                  <li><a href="/about/" class="item-link">
+                  <!--<li><a href="/about/" class="item-link">
                       <div class="item-content">
                         <div class="item-inner"> 
                           <div class="item-title">About</div>
@@ -74,7 +77,7 @@
                         <div class="item-inner">
                           <div class="item-title">Services</div>
                         </div>
-                      </div></a></li>
+                      </div></a></li>-->
                   <li><a href="/blog/" class="item-link">
                       <div class="item-content"> 
                         <div class="item-inner">
@@ -106,10 +109,10 @@
       </div>
     </div>
     <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="/static/js/framework7.min.js"></script>
+    <script type="text/javascript" src={% static "js/framework7.min.js" %}></script>
 	<!-- Path to Google Maps js-->
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<!-- Path to custom map js-->
-	<script type="text/javascript" src="/static/js/map.js"></script>
+	<script type="text/javascript" src={% static "js/map.js" %}></script>
   </body>
 </html>
