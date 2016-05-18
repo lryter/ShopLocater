@@ -4,23 +4,33 @@
             <link rel="stylesheet" href={% static "css/my.css" %}>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        <style type="text/css">
-            body{
-                
-            }
-            #googleMap
-            {
-                width: 100%;
-                height: 50%;
-            }
-        </style>
+
         {% block script %}
         {% endblock %}
+        
+         <script type="text/javascript">
+                function test(){
+                    initMap();
+                    var mobile = false;
+                    if(navigator.userAgent.match(/Android/i)
+                    || navigator.userAgent.match(/webOS/i)
+                    || navigator.userAgent.match(/iPhone/i)
+                    || navigator.userAgent.match(/iPad/i)
+                    || navigator.userAgent.match(/iPod/i)
+                    || navigator.userAgent.match(/BlackBerry/i)
+                    || navigator.userAgent.match(/Windows Phone/i)
+                    ){
+                        mobile = true;
+                    } else { mobile = false; }
+                    document.write(mobile);
+                }
+        </script>
+        
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </head>
     
-    <body onload="initMap();">
+    <body onload="test();">
         
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -34,6 +44,7 @@
             <li {% if "/blog/" == request.path %} class="active" {% endif %}><a href="/blog/" >Shops</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          
             {% if user.is_authenticated %}    
                 <li><a href="/logout/">Logout <span class="sr-only">(current)</span></a></li>
             {% else %}
@@ -44,15 +55,18 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <br><br>
-
+    <!--
+    <div style="position: fixed; z-index: -99; width: 100%; height: 100%;">
+        <iframe frameborder="0" height= 100% width=100% src="https://www.youtube.com/embed/7LDRrdD-Qww?autoplay=1&controls=0&showinfo=0&autohide=1">
+        </iframe>
+    </div>-->
         
     
     
         {% block head %}
         {% endblock %}
         
-        <div class="container">
+        <div class="container shadow1">
             {% block content %}
             {% endblock %}
         </div>
