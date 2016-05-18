@@ -46,21 +46,30 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 {% endblock %}
 
 {% block content %}
-<h1>Home</h1>
+{% if user.is_authenticated %}    
+<h1>Add shop</h1>
+
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <table class="table">
+    <tr><td><label>Name:</label></td><td>{{ form.name }}</td></tr>
+    <tr><td><label>Description:</label></td><td>{{ form.description }}</td></tr>
+    <tr><td><label>Category:</label></td><td>{{ form.category }}</td></tr>
+    <tr><td><label>Pictures:</label></td><td>{{ form.pictures }}</td></tr>
+    <tr><td><label>Coordinates X:</label></td><td>{{ form.coordinatesx }}</td></tr>
+    <tr><td><label>Coordinates Y:</label></td><td>{{ form.coordinatesy }}</td></tr>
+    <tr><td><label>Rating:</label></td><td>{{ form.rating }}</td></tr>
+    <tr><td></td><td><input type="submit" value="Save shop"/></td></tr>
+    </table>
+    
+    
+</form>
 
 <div id="googleMap"></div>
 
-<a href="/blog/">Blog</a>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p}}
-    
-    <input type="submit" value="Add"/>
-</form>
-
-
-{% if user.is_authenticated %}    
-    <a href="/logout/">Logout</a>
 {% else %}
     <a href="/login/?next={{ request.path }}">Login</a>
 {% endif %}

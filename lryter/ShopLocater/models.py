@@ -1,18 +1,21 @@
 from django.db import models
 from django.core.validators import MaxValueValidator,  MinValueValidator
 
-CATEGORY_CHOICES = ((1,  'Imbiss & Restaurant'), 
+CATEGORY_CHOICES = ((1,  'Gastronomie'), 
                                         (2,  'Lebensmittel'), 
                                         (3,  'Elektronik'), 
-                                        (4,  'Kleidung'),
+                                        (4,  'Textil & Fashion'),
                                         (5, 'Fahrzeug'),
                                         (6,  'Schmuck'), 
-                                        (7,  'Sport'),
-                                       (8, 'Diverses') )
+                                        (7,  'Fitness & Sport'),
+                                       (8, 'Beauty & Wellness'),  
+                                       (9, 'Abenteuer & Freizeit'), 
+                                       (10, 'Bildung'), 
+                                       (11, 'Diverses'))
 
 class Task(models.Model):
-    name = models.CharField(max_length=100,  default='nothing')
-    description = models.TextField(max_length=200,  default='nothing')
+    name = models.CharField(max_length=100,  default='Shopname')
+    description = models.TextField(max_length=200,  default='description')
     category = models.IntegerField(choices=CATEGORY_CHOICES,  default=1)
     pictures = models.ImageField(upload_to='uploads/',  default='uploads/fail.jpg')
     coordinatesx = models.FloatField( default = 0)

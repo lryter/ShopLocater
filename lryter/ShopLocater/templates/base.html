@@ -1,10 +1,12 @@
 <html>
     <head>
+            {% load staticfiles %}
+            <link rel="stylesheet" href={% static "css/my.css" %}>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <style type="text/css">
             body{
-                background-color: #eeeeee;
+                
             }
             #googleMap
             {
@@ -24,12 +26,12 @@
       <div class="container">
         <div class="navbar-header">
           
-          <a class="navbar-brand" href="#">Locator</a>
+          <a class="navbar-brand" href="/home/">Locator</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/home/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li {% if "/home/" == request.path %} class="active" {% endif %}><a href="/home/">Add shop</a></li>
+            <li {% if "/blog/" == request.path %} class="active" {% endif %}><a href="/blog/" >Shops</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}    

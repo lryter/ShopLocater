@@ -70,7 +70,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 {% block content %}
 
-<h1>Blog</h1>
+<h1>Shops</h1>
 
 {% if user.is_authenticated %}
 <table>
@@ -85,9 +85,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         {% endfor %}
     </table>
     <div id="googleMap"></div>
-    <a href="/logout/">Logout</a>
-{% else %}
-    <a href="/login/?next={{ request.path }}">Login</a>
+
 {% endif %}
-<a href="/home/">Home</a>
 {% endblock %}
