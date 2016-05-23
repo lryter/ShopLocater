@@ -6,18 +6,18 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
             <link id="css" rel="stylesheet" href="{% static "css/my.css" %}" >
             
+            
         {% block script %}
         {% endblock %}
         
         
         
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-        <script src={% static "js/mobiledetection.js" %}></script>
         <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </head>
     
-    <body onload="test();">
+    <body onload="initMap();">
         
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">

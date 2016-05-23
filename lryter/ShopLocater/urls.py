@@ -9,7 +9,6 @@ urlpatterns=[
     url(r'^home/$',  views.Home), 
     url(r'^blog/$',  views.Blog), 
     url(r'^(?P<id>\d+)/$',  views.Detail,  name='Detail'), 
-    
 ]
 
 urlpatterns += static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)

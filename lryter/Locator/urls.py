@@ -1,6 +1,6 @@
 from django.conf.urls import include, url,  patterns
 from django.contrib import admin
-from rest_framework import routers
+from rest_framework import routers,  serializers,  viewsets
 from ShopLocater.views import TaskViewSet
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,5 +15,6 @@ urlpatterns = [
 ]
 urlpatterns = patterns('', 
 (r'^',  include('ShopLocater.urls')), 
+(r'^json/',  include(router.urls)), 
 (r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)
