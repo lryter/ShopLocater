@@ -47,12 +47,13 @@ def Logout(request):
     logout(request)
     return HttpResponseRedirect(settings.LOGIN_URL)
     
-
+@login_required
 def Blog(request):
     #return render(request, "index/blog.html", {})
     shops = Task.objects.all()
     return render_to_response('blog.html',  {'shops': shops}, context_instance=RequestContext(request))
     
+@login_required
 def Detail(request,  id):
     shop = get_object_or_404(Task,  id=id)
     return render_to_response('detail.html',  {'shop': shop}, context_instance=RequestContext(request))
