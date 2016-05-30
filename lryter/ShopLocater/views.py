@@ -1,11 +1,12 @@
 from django.shortcuts import render,  get_object_or_404
 from django.contrib.auth import authenticate, login,  logout
+from django.contrib.auth.models import User
 from django.http import HttpResponse,  HttpResponseRedirect
 from Locator import settings
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from rest_framework import viewsets
-from .Serializers import TaskSerializers
+from .Serializers import TaskSerializers,  UserSerializers
 from .forms import ShopForm
 from django.shortcuts import redirect,  render_to_response
 from django.template import RequestContext
@@ -61,3 +62,7 @@ def Detail(request,  id):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all().order_by('-date_created')
     serializer_class = TaskSerializers
+    
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_created')
+    serializer_class = UserSerializers

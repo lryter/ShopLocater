@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'task',  TaskViewSet)
+router.register(r'user',  TaskViewSet)
 
 urlpatterns = [
     url(r'^',  include('ShopLocater.urls')), 
