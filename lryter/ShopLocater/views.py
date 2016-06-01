@@ -64,5 +64,5 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializers
     
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_created')
+    queryset = User.objects.all()
     serializer_class = UserSerializers
